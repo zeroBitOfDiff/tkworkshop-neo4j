@@ -39,12 +39,12 @@ def find_hostnames(string):
 def create_nodem(name):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (a:malware {name: `$name`})", name=name )
+        session.run("CREATE (a:malware {name: `{0}`})".format(name) )
 
 def create_nodeh(name):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (b:host {name: `$name`})", name=name )
+        session.run("CREATE (b:host {name: `{0}`})".format(name) )
 
 def create_edge(node1,node2):
     with driver.session() as session:
