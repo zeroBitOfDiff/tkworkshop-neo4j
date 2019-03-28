@@ -39,7 +39,9 @@ def find_hostnames(string):
 def create_nodem(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (a:malware {name: $n}) ", n=n )
+        session.run("MERGE (a:malware {name: $n , type: 'malware'}) ", n=n )
+
+        # maybe we can edit property and add type as malware
         # ("MERGE (a:Person {name: $name}) "
         #    "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
         #    name=name, friend_name=friend_name)
@@ -47,7 +49,7 @@ def create_nodem(n):
 def create_nodeh(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (b:host {name: $n})", n=n )
+        session.run("MERGE (b:host {name: $n , type: 'host'})", n=n )
 
 def create_edge(node1,node2):
     with driver.session() as session:
