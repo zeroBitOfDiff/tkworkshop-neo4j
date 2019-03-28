@@ -36,15 +36,15 @@ def find_hostnames(string):
     valid_hostnames = filter(lambda hostname: hostname.split(".")[-1].lower() in valid_hostname_suffixes, possible_hostnames)
     return valid_hostnames
 
-def create_nodem(name):
+def create_nodem(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (a:malware {name: `{0}`})".format(name) )
+        session.run("CREATE (a:malware {name: `{0}`})".format(n) )
 
-def create_nodeh(name):
+def create_nodeh(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (b:host {name: `{0}`})".format(name) )
+        session.run("CREATE (b:host {name: `{0}`})".format(n) )
 
 def create_edge(node1,node2):
     with driver.session() as session:
