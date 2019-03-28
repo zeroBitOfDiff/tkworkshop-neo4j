@@ -64,23 +64,23 @@ for root,dirs,files in os.walk(args.target_path):
         #     # network.add_node(path,label=path[:32],color='black',penwidth=5,bipartite=0)
         #     # malware nodes
         #     # CREATE (n:path {name: path[:32]})
-        #     create_node(path, path[:32])
+        create_node(path, path[:32])
 
         for hostname in hostnames:
             print(hostname)
         #     # network.add_node(hostname,label=hostname,color='blue', penwidth=10,bipartite=1)
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
-        #     create_node(hostname, hostname)
+            create_node(hostname, hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
         #     # relationship between hostname and malware
         #     # CREATE (n:path)<-[:HOST]-(n:hostname)
-        #     create_edge(path, hostname)
+            create_edge(path, hostname)
 
-        # if hostnames:
-        #     print ("Extracted hostnames from:",path)
-        #     pprint.pprint(hostnames)
+        if hostnames:
+            print ("Extracted hostnames from:",path)
+            pprint.pprint(hostnames)
 
 # write the dot file to disk
 # write_dot(network, args.output_file)
