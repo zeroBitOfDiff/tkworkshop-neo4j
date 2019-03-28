@@ -47,7 +47,7 @@ def create_nodem(n):
 def create_nodeh(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (b:host { name: `%s`})" % n )
+        session.run("MERGE (b:host {name: `$n`})", n=n )
 
 def create_edge(node1,node2):
     with driver.session() as session:
