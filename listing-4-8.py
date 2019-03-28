@@ -38,7 +38,8 @@ def find_hostnames(string):
 
 def create_node(name):
     with driver.session() as session:
-        session.run("CREATE (n:{0})".format(name))
+        # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
+        session.run("CREATE (n:{0})".format(name) )
 
 def create_edge(node1,node2):
     with driver.session() as session:
@@ -64,14 +65,15 @@ for root,dirs,files in os.walk(args.target_path):
         #     # network.add_node(path,label=path[:32],color='black',penwidth=5,bipartite=0)
         #     # malware nodes
         #     # CREATE (n:path {name: path[:32]})
-        create_node( path[:32])
+        path=path.replace('-','_')
+        create_node(path[:32])
 
         for hostname in hostnames:
             print(hostname)
         #     # network.add_node(hostname,label=hostname,color='blue', penwidth=10,bipartite=1)
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
-            create_node( hostname)
+            create_node(hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
         #     # relationship between hostname and malware
