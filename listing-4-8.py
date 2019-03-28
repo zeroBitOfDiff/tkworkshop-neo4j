@@ -38,11 +38,11 @@ def find_hostnames(string):
 
 def create_node(name, label):
     with driver.session() as session:
-        session.run("CREATE (n:{} {label: $label})".format(name), label=label)
+        session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
 
 def create_edge(node1,node2):
     with driver.session() as session:
-        session.run("CREATE (n: {})<-[:HOST]-(n: {})", node1, node2 )
+        session.run("CREATE (n: {0})<-[:HOST]-(n: {1})".format(node1,node2) )
 
 # search the target directory for valid Windows PE executable files
 for root,dirs,files in os.walk(args.target_path):
