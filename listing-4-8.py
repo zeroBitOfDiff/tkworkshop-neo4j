@@ -66,7 +66,8 @@ for root,dirs,files in os.walk(args.target_path):
         #     # CREATE (n:path {name: path[:32]})
         #     create_node(path, path[:32])
 
-        # for hostname in hostnames:
+        for hostname in hostnames:
+            print(hostname)
         #     # network.add_node(hostname,label=hostname,color='blue', penwidth=10,bipartite=1)
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
