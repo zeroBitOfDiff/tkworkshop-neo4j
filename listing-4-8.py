@@ -39,7 +39,7 @@ def find_hostnames(string):
 def create_nodem(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (malware { name: `%s` })" % n)
+        session.run("MERGE (malware { name: %s })" % n)
 
 def create_nodeh(n):
     with driver.session() as session:
@@ -72,7 +72,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # network.add_node(path,label=path[:32],color='black',penwidth=5,bipartite=0)
         #     # malware nodes
         #     # CREATE (n:path {name: path[:32]})
-        # path=path.replace('-','_')
+        path=path.replace('-','_')
         create_nodem(path[:32])
 
         for hostname in hostnames:
