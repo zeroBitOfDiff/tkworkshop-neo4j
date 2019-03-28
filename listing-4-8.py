@@ -28,7 +28,7 @@ args.add_argument("target_path",help="directory with malware samples")
 args = args.parse_args()
 # network = networkx.Graph()
 
-valid_hostname_suffixes = map(lambda string: string.strip(), open("~/project/malware_data_science/ch4/code/domain_suffixes.txt"))
+valid_hostname_suffixes = map(lambda string: string.strip(), open("/home/president_techknights/project/malware_data_science/ch4/code/domain_suffixes.txt"))
 valid_hostname_suffixes = set(valid_hostname_suffixes)
 
 def find_hostnames(string):
