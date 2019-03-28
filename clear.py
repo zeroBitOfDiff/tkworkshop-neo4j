@@ -1,7 +1,7 @@
 from neo4j import GraphDatabase
 import os 
 # print(os.environ['neouser'])
-driver = GraphDatabase.driver("bolt://localhost:7687",auth(os.environ['neouser'],os.environ['neopassword']))
+driver = GraphDatabase.driver("bolt://localhost:7687",auth=(os.environ['neouser'],os.environ['neopassword']))
 
 def add_friend(tx, name, friend_name):
     tx.run("MERGE (a:Person {name: $name}) "
