@@ -39,7 +39,10 @@ def find_hostnames(string):
 def create_nodem(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (malware { name: %s })" % n)
+        session.run("MERGE (a:malware {name: %s}) " % n)
+        # ("MERGE (a:Person {name: $name}) "
+        #    "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
+        #    name=name, friend_name=friend_name)
 
 def create_nodeh(n):
     with driver.session() as session:
