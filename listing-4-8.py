@@ -74,6 +74,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
             hostname=hostname.replace('.','_')
+            hostname=hostname.replace('-','_')
             create_node(hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
