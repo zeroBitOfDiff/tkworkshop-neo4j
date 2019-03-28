@@ -39,11 +39,11 @@ def find_hostnames(string):
 def create_node(name):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (n:{0})".format(name) )
+        session.run("CREATE (n:`{0}`)".format(name) )
 
 def create_edge(node1,node2):
     with driver.session() as session:
-        session.run("CREATE (n: {0})<-[:HOST]-(n: {1})".format(node1,node2) )
+        session.run("CREATE (n:`{0}`)<-[:HOST]-(n:`{1}`)".format(node1,node2) )
 
 # search the target directory for valid Windows PE executable files
 for root,dirs,files in os.walk(args.target_path):
@@ -65,7 +65,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # network.add_node(path,label=path[:32],color='black',penwidth=5,bipartite=0)
         #     # malware nodes
         #     # CREATE (n:path {name: path[:32]})
-        path=path.replace('-','_')
+        # path=path.replace('-','_')
         create_node(path[:32])
 
         for hostname in hostnames:
@@ -74,7 +74,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
             hostname=hostname.replace('.','_')
-            hostname=hostname.replace('-','_')
+            # hostname=hostname.replace('-','_')
             create_node(hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
