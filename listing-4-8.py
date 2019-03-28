@@ -100,7 +100,7 @@ for root,dirs,files in os.walk(args.target_path):
 
         if hostnames:
             print ("Extracted hostnames from:",path)
-            pprint.pprint(hostnames)
+            # pprint.pprint(hostnames)
 
 # write the dot file to disk
 # write_dot(network, args.output_file)
