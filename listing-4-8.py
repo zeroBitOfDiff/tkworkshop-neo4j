@@ -38,7 +38,7 @@ def find_hostnames(string):
 
 def create_node(name, label):
     with driver.session() as session:
-        session.run("CREATE (n: $name {label: $label})", name=name, label=label)
+        session.run("CREATE (n:{} {label: $label})".format(name), label=label)
 
 def create_edge(node1,node2):
     with driver.session() as session:
