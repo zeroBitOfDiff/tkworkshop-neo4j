@@ -81,7 +81,7 @@ for root,dirs,files in os.walk(args.target_path):
         create_nodem(path[:32])
 
         for hostname in hostnames:
-            print(hostname)
+            # print(hostname)
         #     # network.add_node(hostname,label=hostname,color='blue', penwidth=10,bipartite=1)
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
