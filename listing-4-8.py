@@ -33,10 +33,7 @@ valid_hostname_suffixes = set(valid_hostname_suffixes)
 
 def find_hostnames(string):
     possible_hostnames = re.findall(r'(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}', string)
-    valid_hostnames = filter(
-            lambda hostname: hostname.split(".")[-1].lower() in valid_hostname_suffixes,
-            possible_hostnames
-    )
+    valid_hostnames = filter(lambda hostname: hostname.split(".")[-1].lower() in valid_hostname_suffixes, possible_hostnames)
     return valid_hostnames
 
 def create_node(name, label):
