@@ -47,7 +47,7 @@ def create_nodem(n):
 def create_nodeh(n):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("MERGE (b:host {name: `$n`})", n=n )
+        session.run("MERGE (b:host {name: $n})", n=n )
 
 def create_edge(node1,node2):
     with driver.session() as session:
@@ -84,7 +84,8 @@ for root,dirs,files in os.walk(args.target_path):
         #     # hostname nodes
         #     # CREATE (n:hostname {name: hostname})
             hostname=hostname.replace('.','_')
-            # hostname=hostname.replace('-','_')
+            hostname=hostname.replace('-','_')
+            hostname= '_'+hostname
             create_nodeh(hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
