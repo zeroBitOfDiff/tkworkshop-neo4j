@@ -79,10 +79,10 @@ for root,dirs,files in os.walk(args.target_path):
         #     # network.add_edge(hostname,path,penwidth=2)
         #     # relationship between hostname and malware
         #     # CREATE (n:path)<-[:HOST]-(n:hostname)
-        try:
-            create_edge(path[:32], hostname)
-        except:
-            print("couldn't create edge {} - {}".format(path[:32],hostname))
+            try:
+                create_edge(path[:32], hostname)
+            except:
+                print("couldn't create edge {} - {}".format(path[:32],hostname))
 
         if hostnames:
             print ("Extracted hostnames from:",path)
