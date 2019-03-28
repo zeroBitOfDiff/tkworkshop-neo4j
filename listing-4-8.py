@@ -58,7 +58,7 @@ for root,dirs,files in os.walk(args.target_path):
 
         # use the search_doc function in the included reg module to find hostnames
         hostnames = find_hostnames(strings)
-        print(hostnames)
+        # print(hostnames)
         # if len(hostnames):
         #     # add the nodes and edges for the bipartite network
         #     # network.add_node(path,label=path[:32],color='black',penwidth=5,bipartite=0)
