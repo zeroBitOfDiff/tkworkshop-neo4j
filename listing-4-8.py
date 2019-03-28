@@ -36,14 +36,21 @@ def find_hostnames(string):
     valid_hostnames = filter(lambda hostname: hostname.split(".")[-1].lower() in valid_hostname_suffixes, possible_hostnames)
     return valid_hostnames
 
-def create_node(name):
+def create_nodem(name):
     with driver.session() as session:
         # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
-        session.run("CREATE (n:`{0}`)".format(name) )
+        session.run("CREATE (a:malware {name: `$name`})", name=name )
+
+def create_nodeh(name):
+    with driver.session() as session:
+        # session.run("CREATE (n:{0})".format(name) + " /{ label: $label /}", label=label)
+        session.run("CREATE (b:host {name: `$name`})", name=name )
 
 def create_edge(node1,node2):
     with driver.session() as session:
-        session.run("CREATE (n.`{0}`)<-[:HOST]-(n.`{1}`)".format(node1,node2) )
+        # session.run("CREATE (n.`{0}`)<-[:HOST]-(n.`{1}`)".format(node1,node2) )
+        session.run("MATCH (a.malware), (b.host) WHERE a.name = `$node1` AND b.name = `$node2` "
+                    "CREATE (a)<-[:HOST]-(b)", node1=node1, node2=node2 )
 
 # search the target directory for valid Windows PE executable files
 for root,dirs,files in os.walk(args.target_path):
@@ -66,7 +73,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # malware nodes
         #     # CREATE (n:path {name: path[:32]})
         # path=path.replace('-','_')
-        create_node(path[:32])
+        create_nodem(path[:32])
 
         for hostname in hostnames:
             print(hostname)
@@ -75,7 +82,7 @@ for root,dirs,files in os.walk(args.target_path):
         #     # CREATE (n:hostname {name: hostname})
             hostname=hostname.replace('.','_')
             # hostname=hostname.replace('-','_')
-            create_node(hostname)
+            create_nodeh(hostname)
 
         #     # network.add_edge(hostname,path,penwidth=2)
         #     # relationship between hostname and malware
