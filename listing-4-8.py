@@ -52,7 +52,7 @@ def create_nodeh(n):
 def create_edge(node1,node2):
     with driver.session() as session:
         # session.run("CREATE (n.`{0}`)<-[:HOST]-(n.`{1}`)".format(node1,node2) )
-        session.run("MATCH (a.malware), (b.host) WHERE a.name = `$node1` AND b.name = `$node2` "
+        session.run("MATCH (a.malware), (b.host) WHERE a.name = $node1 AND b.name = $node2 "
                     "CREATE (a)<-[:HOST]-(b)", node1=node1, node2=node2 )
 
 # search the target directory for valid Windows PE executable files
